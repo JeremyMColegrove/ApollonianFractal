@@ -3,7 +3,7 @@
 
 # How to compile and run
     1) Navigate to the directory where you have the .java files in the cmd
-    2) type 'javac FractalDrawer.java Canvas.java Circle.java Rectangle.java Triangle.java Solver.java Complex.java'
+    2) type 'javac FractalDrawer.java Canvas.java Circle.java Solver.java Complex.java'
     3) to run type 'java FractalDrawer'
 
 These are the prompts the user has to enter:
