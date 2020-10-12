@@ -16,8 +16,6 @@ public class Canvas extends JApplet {
 	private int height;
 	private int width;
 	private CopyOnWriteArrayList<Circle> circles;
-	private CopyOnWriteArrayList<Triangle> triangles;
-	private CopyOnWriteArrayList<Rectangle> rectangles;
 	
 	public Canvas() {
 		JFrame f = new JFrame("Canvas");
@@ -29,8 +27,6 @@ public class Canvas extends JApplet {
 		f.setSize(width, height);
 		f.getContentPane().add(this);
 		circles = new CopyOnWriteArrayList<Circle>();
-		rectangles = new CopyOnWriteArrayList<Rectangle>();
-		triangles = new CopyOnWriteArrayList<Triangle>();
 		f.setVisible(true);
 	}
 	
@@ -44,8 +40,6 @@ public class Canvas extends JApplet {
 		f.setSize(width, height);
 		f.getContentPane().add(this);
 		circles = new CopyOnWriteArrayList<Circle>();
-		rectangles = new CopyOnWriteArrayList<Rectangle>();
-		triangles = new CopyOnWriteArrayList<Triangle>();
 		f.setVisible(true);
 	}
 	
@@ -57,8 +51,6 @@ public class Canvas extends JApplet {
 
 	public void drawToBuffer(Graphics g){	
 		ListIterator<Circle> circItr = circles.listIterator();
-		ListIterator<Rectangle> recItr = rectangles.listIterator();
-		ListIterator<Triangle> triItr = triangles.listIterator();
 
 		while (circItr.hasNext()) {
 			Circle curCircle = circItr.next();
@@ -68,24 +60,6 @@ public class Canvas extends JApplet {
 					- curRadius, 2 * curRadius, 2 * curRadius);
 
 		}
-
-		while (recItr.hasNext()) {
-			Rectangle curRectangle = recItr.next();
-			g.setColor(curRectangle.getColor());
-			g.fillRect((int)curRectangle.getXPos(), (int)curRectangle.getYPos(),
-					(int)curRectangle.getWidth(), (int)curRectangle.getHeight());
-		}
-
-		while (triItr.hasNext()) {
-			Triangle curTriangle = triItr.next();
-			g.setColor(curTriangle.getColor());
-			Polygon po = new Polygon();
-			po.addPoint((int)curTriangle.getXPos(), (int)curTriangle.getYPos());
-			po.addPoint((int)(curTriangle.getXPos() + curTriangle.getWidth()), (int)curTriangle
-					.getYPos());
-			po.addPoint((int)(curTriangle.getXPos() + curTriangle.getWidth() / 2), (int)(curTriangle.getYPos() - curTriangle.getHeight()));
-			g.fillPolygon(po);
-		}
 	}
 	
 	
@@ -93,18 +67,8 @@ public class Canvas extends JApplet {
 		circles.add(circ);
 	}
 	
-	public void drawShape(Rectangle rec){
-		rectangles.add(rec);
-	}
-	
-	public void drawShape(Triangle tri){
-		triangles.add(tri);
-	}
-	
 	public void clear(){
 		circles.clear();
-		rectangles.clear();
-		triangles.clear();
 	}
 	
 
